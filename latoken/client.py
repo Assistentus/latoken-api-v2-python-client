@@ -151,7 +151,7 @@ class LatokenClient:
 
         if request_type == 'get':
             signature = hmac.new(
-                self.apiSecret,
+                self.apiSecret.encode('ascii'),
                 ('GET' + endpoint + queryParams).encode('ascii'),
                 hashlib.sha512
             )
@@ -169,7 +169,7 @@ class LatokenClient:
 
         elif request_type == 'post':
             signature = hmac.new(
-                self.apiSecret,
+                self.apiSecret.encode('ascii'),
                 ('POST' + endpoint + queryParams).encode('ascii'),
                 hashlib.sha512
             )
